@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="VirtualT">
+    <entity name="PhotoInfo" representedClassName="PhotoInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="url_t" optional="YES" attributeType="URI"/>
+        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="photos" inverseEntity="Pin"/>
+    </entity>
+    <entity name="Pin" representedClassName=".Pin" syncable="YES" codeGenerationType="class">
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PhotoInfo" inverseName="pin" inverseEntity="PhotoInfo"/>
+    </entity>
+    <elements>
+        <element name="PhotoInfo" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Pin" positionX="-416.1646118164062" positionY="-2.62969970703125" width="128" height="74"/>
+    </elements>
+</model>
