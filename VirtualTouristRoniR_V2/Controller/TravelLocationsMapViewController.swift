@@ -98,14 +98,30 @@ class TravelLocationsMapViewController: UIViewController,UINavigationControllerD
         let latStr = String((view.annotation?.coordinate.latitude.description)!)
         let lonStr = String((view.annotation?.coordinate.longitude.description)!)
         
-        let selectedPin = Pin(context: dataController.viewContext)
-        selectedPin.lat = view.annotation!.coordinate.latitude
-        selectedPin.lon = view.annotation!.coordinate.longitude
+        //let selectedPin = Pin(context: dataController.viewContext)
+        //selectedPin.lat = view.annotation!.coordinate.latitude
+        //selectedPin.lon = view.annotation!.coordinate.longitude
 
         //photoAlbumVC.self.loadPicsForLatLon(pinLatVal: latStr, pinLonVal: lonStr)
         photoAlbumVC.latVal = latStr
         photoAlbumVC.lonVal = lonStr
-        photoAlbumVC.pin = selectedPin
+      
+      /*let pins = self.pinLocations{
+       
+         guard let indexPath = pins.firstIndex(where: {
+           (pin) -> Bool in pin.lat == view.annotation!.coordinate.latitude && pin.lon == view.annotation!.coordinate.longitude}
+         )else {return}
+        photoAlbumVC.pin = self.pinLocations[indexPath]
+      }*/
+      
+      if let pins = self.pinLocations {
+       guard let indexPath = pins.firstIndex(where: { (pin) -> Bool in
+         pin.lat == view.annotation!.coordinate.latitude && pin.lon == view.annotation!.coordinate.longitude})
+        else{return}
+        photoAlbumVC.pin = pins[indexPath]
+      }
+      
+        //photoAlbumVC.pin = selectedPin
         photoAlbumVC.dataController = dataController
         
         // Set the back button item of photo album view controller to "OK"
